@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+:root {
+    --product-padding: 1rem;
+    --primary-light: #d0ffd7;
+    --primary-dark: #063f0e;
+}
+
+body {
+    background: var(--primary-light)!important;
+    margin-top: 6rem!important;
+    /* height: 100%; */
+
+}
+
+.navbar img {
+
+    height: 4rem;
+
+}
+
+
+
+.slider img {
+    border-radius: 1rem;
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+}
+.carousel-inner{
+    height: 40vh;
+}
+
+
+.section {
+    margin-top: 2rem;
+}
+
+
+/* ------------------------ product Section ---------------------------- */
+
+#product-section {
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+}
+
+.product:nth-child(1) {
+    background: url(./images/louis-hansel-phEaeqe555M-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.product:nth-child(2) {
+    background: url("./images/peter-bravo-de-los-rios-LQLIS9AHLZw-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.product:nth-child(3) {
+    background: url("./images/1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.product {
+    overflow-y: hidden;
+    cursor: pointer;
+    padding-top: 6rem;
+    color: aliceblue;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 10px 2px black;
+    transition: box-shadow 250ms ease-in-out, scale 450ms ease;
+}
+
+.product .product-content {
+    padding-top: 2.5em;
+    max-width: 35ch;
+    border-radius: inherit;
+    padding-bottom: 2em;
+    padding-left: var(--product-padding);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.719) 0%, rgba(0, 0, 0, 0.562) 81%, rgba(0, 0, 0, 0) 100%);
+    background-blend-mode: multiply;
+    transform: translateY(65%);
+    transform-origin: bottom;
+    transition: 350ms ease-in-out;
+}
+
+.product .product-content h3 {
+    padding-bottom: 0.25em;
+    margin-bottom: 0.75em;
+    position: relative;
+    width: max-content;
+    font-size: 1.25rem;
+
+}
+
+.product .product-content h3::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--product-padding) * -1);
+    width: calc(100% + var(--product-padding));
+    height: 3px;
+    background-color: var(--primary-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 300ms 300ms ease-in-out;
+}
+
+.product:hover,
+.product:focus {
+    scale: 1.05;
+    box-shadow: 4px 4px 15px 5px black;
+}
+
+.product:hover h3::after,
+.product:focus h3::after {
+    transform: scaleX(1);
+}
+
+.product:hover .product-content,
+.product:focus .product-content {
+    transform: translateY(0);
+}
+
+
+
+
+/* --------------------------------------UTILITY--------------------------------- */
+
+.primary-btn{
+    /* for a salad ordering website */
+    background: var(--primary-dark);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 250ms ease-in-out;
+
+}
+
+h2{
+    margin-bottom: 2rem;
+}
+
+.catagories h2{
+    margin-block: 2rem;
+}
+
+
+
+.footer {
+    
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    background: #111;
+}
+
+.footer a,p{
+    color: var(--primary-light);
+
+}
+

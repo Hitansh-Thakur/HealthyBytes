@@ -1,0 +1,122 @@
+/* body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.main-container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+}
+
+.login-container {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form label {
+    font-weight: bold;
+    color: #555;
+}
+
+.login-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color:#0056b3;
+} */
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+        background-image: url('./images/loginBg.jpg');
+        background-size: cover; /* Ensure the background covers the entire viewport */
+        background-position: left; /* Adjust the position as needed */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        background-attachment: fixed;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    height: 100vh;
+}
+
+
+.login-container {
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto; /* Center the login box horizontally and vertically */
+    width: 400px;
+}
+
+.login-container h2 {
+    color: #333;
+}
+
+.login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.login-form label {
+    font-weight: bold;
+    color: #555;
+}
+
+.login-form input {
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+}
+
+.login-form button {
+    padding: 17px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
