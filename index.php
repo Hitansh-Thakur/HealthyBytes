@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div> -->
-        <div id="carouselExampleIndicators" class="mt-4 carousel slide slider w-75 mx-auto" data-ride="carousel">
+        <div id="carouselExampleIndicators" class=" carousel slide mt-5 slider w-75 mx-auto" data-ride="carousel">
             <ol class="carousel-indicators ">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -125,7 +125,7 @@
         <div class="container d-block my-4">
             <h2 class="py-2">Popular Products</h2>
             
-            <div class="card-decks flex-wrap justify-content-around d-flex">
+            <div class="flex-wrap justify-content-around d-flex">
                 
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-header">chickpeas Salad</div>
