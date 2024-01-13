@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="container mt">
         <h1>Admin Panel</h1>
         <form action="upload.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
