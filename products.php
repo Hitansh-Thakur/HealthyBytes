@@ -51,7 +51,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4"> <!-- This makes the grid responsive -->
 
                         <div class="card" style="max-width: 18rem;">
-                            <img class="card-img-top" src="<?php echo "./uploads/" . $product['images']; ?>"
+                            <img class="card-img-top" src="<?php echo "./uploads/" . $product['salad_img']; ?>"
                                 alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">
