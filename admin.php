@@ -12,36 +12,52 @@
 </head>
 
 <body>
-    <div class="container mt">
-        <h1>Admin Panel</h1>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="name">Salad Name:</label>
-                <input type="text" class="form-control" id="name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="desc">Description:</label>
-                <textarea class="form-control" id="desc" name="desc"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" class="form-control" id="price" name="price">
-            </div>
-            <div class="form-group">
-                <label for="nutritional_content">Nutritional Content:</label>
-                <textarea class="form-control" id="nutritional_content" name="nutritional_content"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="ingredients">Ingredients:</label>
-                <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="file">Image:</label>
-                <input type="file" class="form-control-file" id="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary" name="submit">Upload</button>
-        </form>
-    </div>
+    <?php
+        include 'AdminPanel/adminNav.php';
+    ?>
+
+
+<section class="container mt-5">
+        <h1 class="mb-4">Admin Panel</h1>
+        <h2>Products</h2>
+        <div class="table-responsive">
+
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Ingredients</th>
+                        <th>Nutritional Content</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include 'db.php';
+                    $result = $conn->query("SELECT * FROM salads");
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row['salad_id'] . "</td>";
+                        echo "<td>" . $row['salad_name'] . "</td>";
+                        echo "<td>" . $row['salad_desc'] . "</td>";
+                        echo "<td>" . $row['salad_price'] . "</td>";
+                        echo "<td>" . $row['ingredients'] . "</td>";
+                        echo "<td>" . $row['nutritional_content'] . "</td>";
+                        echo "<td><img src='uploads/" . $row['salad_img'] . "' width='250' height='250'></td>";
+                        echo "<td><a href='AdminPanel/edit.php?id=" . $row['salad_id'] . "' class='btn btn-info'>Edit</a> <a href='AdminPanel/delete.php?id=" . $row['salad_id'] . "' class='btn btn-danger'>Delete</a></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
 </body>
 
 </html>
