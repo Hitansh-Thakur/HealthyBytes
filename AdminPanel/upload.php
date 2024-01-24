@@ -22,7 +22,7 @@ if (isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
             $ingredients = $_POST['ingredients'];
 
             // Insert data into database
-            $insert = $conn->query("INSERT into salads (salad_name, salad_desc, salad_price, nutritional_content, ingredients, images) VALUES ('" . $name . "', '" . $desc . "', '" . $price . "', '" . $nutritional_content . "', '" . $ingredients . "', '" . $fileName . "')");
+            $insert = $conn->query("INSERT into salads (salad_name, salad_desc, salad_price, nutritional_content, ingredients, salad_img) VALUES ('" . $name . "', '" . $desc . "', '" . $price . "', '" . $nutritional_content . "', '" . $ingredients . "', '" . $fileName . "')");
             if ($insert) {
                 echo "The salad has been added successfully.";
             } else {
