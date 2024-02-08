@@ -10,6 +10,6 @@ $id = $_GET['id'];
 $conn->query("DELETE FROM salads WHERE salad_id = $id");
 
 // Redirect to the admin page
-header('Location: admin.php');
+header('Location: ../admin.php');
 exit;
 ?>

@@ -15,6 +15,7 @@
 body {
     background: var(--primary-light)!important;
     margin-top: 6rem!important;
+    font-family: 'Source Sans Pro', sans-serif !important;
     /* height: 100%; */
 
 }

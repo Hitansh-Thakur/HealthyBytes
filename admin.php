@@ -49,7 +49,7 @@
                         echo "<td>" . $row['ingredients'] . "</td>";
                         echo "<td>" . $row['nutritional_content'] . "</td>";
                         echo "<td><img src='uploads/" . $row['salad_img'] . "' width='250' height='250'></td>";
-                        echo "<td><a href='AdminPanel/edit.php?id=" . $row['salad_id'] . "' class='btn btn-info'>Edit</a> <a href='AdminPanel/delete.php?id=" . $row['salad_id'] . "' class='btn btn-danger'>Delete</a></td>";
+                        echo "<td><a href='AdminPanel/edit.php?id=" . $row['salad_id'] . "' class='btn btn-info my-2'>Edit</a> <a href='AdminPanel/delete.php?id=" . $row['salad_id'] . "' class='btn btn-danger'>Delete</a></td>";
                         echo "</tr>";
                     }
                     ?>

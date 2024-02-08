@@ -79,7 +79,7 @@
                 <div class="product-container">
                     <div class="product">
                         <div class="product-content">
-                            <h3>Wearplate Cladding</h3>
+                            <h3>Salad 1</h3>
                             <p>
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
                                 amet
@@ -92,7 +92,7 @@
 
                     <div class="product">
                         <div class="product-content">
-                            <h3>H Beam Welding Machine</h3>
+                            <h3>Salad 2</h3>
                             <p>
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
                                 amet
@@ -105,7 +105,7 @@
 
                     <div class="product">
                         <div class="product-content">
-                            <h3>H Beam Welding Machine</h3>
+                            <h3>Salad 3</h3>
                             <p>
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
                                 amet

@@ -1,9 +1,9 @@
 <?php
 // Include the database configuration file
-include_once 'db.php';
+include_once '../db.php';
 
 
-$targetDir = "uploads/";
+$targetDir = "../uploads/";
 $fileName = basename($_FILES["file"]["name"]);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -25,6 +25,7 @@ if (isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
             $insert = $conn->query("INSERT into salads (salad_name, salad_desc, salad_price, nutritional_content, ingredients, salad_img) VALUES ('" . $name . "', '" . $desc . "', '" . $price . "', '" . $nutritional_content . "', '" . $ingredients . "', '" . $fileName . "')");
             if ($insert) {
                 echo "The salad has been added successfully.";
+                header("Location: insert.php");
             } else {
                 echo "Failed to add the salad, please try again.";
             }
