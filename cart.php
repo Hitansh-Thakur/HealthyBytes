@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
     $productId = htmlspecialchars($_POST["product_id"]);
     $productName = htmlspecialchars($_POST["product_name"]);
     $productPrice = floatval($_POST["product_price"]);
-    $quantity = isset($_POST["quantity"]) ? intval($_POST["quantity"]) : 1;
+    $quantity = isset($_POST["qty"]) ? intval($_POST["qty"]) : 1;
     $productImage = htmlspecialchars($_POST["product_image"]);
 
     addToCart($productId, $productName, $productPrice, $quantity, $productImage);
