@@ -46,34 +46,34 @@
         <div class="container">
             <div class="row">
                 <?php
-                foreach ($products as $product) {
+                foreach ($products as $salad) {
                     ?>
                     <div class="col-sm-12 col-md-6 col-lg-4"> <!-- This makes the grid responsive -->
 
                         <div class="card" style="max-width: 18rem;">
-                            <img class="card-img-top " src="<?php echo "./uploads/" . $product['salad_img']; ?>"
+                            <img class="card-img-top " src="<?php echo "./uploads/" . $salad['salad_img']; ?>"
                                 alt="Card image cap" height="200px" style="object-fit:cover;">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <?php echo $product['salad_name']; ?>
+                                    <?php echo $salad['salad_name']; ?>
                                 </h5>
                                 <p class="card-text text-truncate text-dark d-block" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" >
-                                    <?php echo $product['salad_desc']; ?>
+                                    <?php echo $salad['salad_desc']; ?>
                                 </p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <?php echo $product['nutritional_content']; ?>
+                                    <?php echo $salad['nutritional_content']; ?>
                                 </li>
 
                             </ul>
                             <div class="card-body">
                                 <span class="text-dark font-weight-bold align-middle" >
-                                    <?php echo $product['salad_price'] . " ₹ "; ?>
+                                    <?php echo $salad['salad_price'] . " ₹ "; ?>
                                 </span>
                                 <!-- <a href="product_details.php?id=1" class="btn btn-primary float-right align-middle"></a> -->
                             <?php    
-                                echo "<a href='product_details.php?id=" . $product['salad_id'] . "' class='btn btn-primary float-right align-middle'>View</a>";
+                                echo "<a href='product_details.php?id=" . $salad['id'] . "' class='btn btn-primary float-right align-middle'>View</a>";
                             ?>
                             </div>
                         </div>

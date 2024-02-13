@@ -7,7 +7,7 @@ include 'adminNav.php';
 $id = $_GET['id'];
 
 // Delete the product
-$conn->query("DELETE FROM salads WHERE salad_id = $id");
+$conn->query("DELETE FROM salads WHERE id = $id");
 
 // Redirect to the admin page
 header('Location: ../admin.php');

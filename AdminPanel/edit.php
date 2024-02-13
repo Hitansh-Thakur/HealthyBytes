@@ -8,11 +8,11 @@ include 'adminNav.php';
 $id = $_GET['id'];
 
 // Get the product details
-$stmt = $conn->prepare("SELECT * FROM salads WHERE salad_id = ?");
+$stmt = $conn->prepare("SELECT * FROM salads WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
-$product = $result->fetch_assoc();
+$salad = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form data
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nutritional_content = $_POST['nutritional_content'];
 
     // Update the product
-    $stmt = $conn->prepare("UPDATE salads SET salad_name = ?, salad_desc = ?, salad_price = ?, ingredients = ?, nutritional_content = ? WHERE salad_id = ?");
+    $stmt = $conn->prepare("UPDATE salads SET salad_name = ?, salad_desc = ?, salad_price = ?, ingredients = ?, nutritional_content = ? WHERE id = ?");
     $stmt->bind_param("sssssi", $name, $desc, $price, $ingredients, $nutritional_content, $id);
     $stmt->execute();
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($temp, $folder.$image);
 
         // Update the image file name in the database
-        $stmt = $conn->prepare("UPDATE salads SET salad_img = ? WHERE salad_id = ?");
+        $stmt = $conn->prepare("UPDATE salads SET salad_img = ? WHERE id = ?");
         $stmt->bind_param("si", $image, $id);
         $stmt->execute();
     }
@@ -70,26 +70,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="name">Salad Name:</label>
             <input type="text" class="form-control" id="name" name="salad_name"
-                value="<?php echo $product['salad_name']; ?>">
+                value="<?php echo $salad['salad_name']; ?>">
         </div>
         <div class="form-group">
             <label for="desc">Description:</label>
-            <textarea class="form-control" id="desc" name="salad_desc"><?php echo $product['salad_desc']; ?></textarea>
+            <textarea class="form-control" id="desc" name="salad_desc"><?php echo $salad['salad_desc']; ?></textarea>
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
             <input type="number" class="form-control" id="price" name="salad_price"
-                value="<?php echo $product['salad_price']; ?>">
+                value="<?php echo $salad['salad_price']; ?>">
         </div>
         <div class="form-group">
             <label for="nutritional_content">Nutritional Content:</label>
             <textarea class="form-control" id="nutritional_content"
-                name="nutritional_content"><?php echo $product['nutritional_content']; ?></textarea>
+                name="nutritional_content"><?php echo $salad['nutritional_content']; ?></textarea>
         </div>
         <div class="form-group">
             <label for="ingredients">Ingredients:</label>
             <textarea class="form-control" id="ingredients"
-                name="ingredients"><?php echo $product['ingredients']; ?></textarea>
+                name="ingredients"><?php echo $salad['ingredients']; ?></textarea>
         </div>
         <div class="form-group">
             <label for="image">Image:</label>

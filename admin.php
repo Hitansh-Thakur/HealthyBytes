@@ -40,16 +40,16 @@
                     <?php
                     include 'db.php';
                     $result = $conn->query("SELECT * FROM salads");
-                    while ($row = $result->fetch_assoc()) {
+                    while ($salad = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row['salad_id'] . "</td>";
-                        echo "<td>" . $row['salad_name'] . "</td>";
-                        echo "<td>" . $row['salad_desc'] . "</td>";
-                        echo "<td>" . $row['salad_price'] . "</td>";
-                        echo "<td>" . $row['ingredients'] . "</td>";
-                        echo "<td>" . $row['nutritional_content'] . "</td>";
-                        echo "<td><img src='uploads/" . $row['salad_img'] . "' width='250' height='250'></td>";
-                        echo "<td><a href='AdminPanel/edit.php?id=" . $row['salad_id'] . "' class='btn btn-info my-2'>Edit</a> <a href='AdminPanel/delete.php?id=" . $row['salad_id'] . "' class='btn btn-danger'>Delete</a></td>";
+                        echo "<td>" . $salad['id'] . "</td>";
+                        echo "<td>" . $salad['salad_name'] . "</td>";
+                        echo "<td>" . $salad['salad_desc'] . "</td>";
+                        echo "<td>" . $salad['salad_price'] . "</td>";
+                        echo "<td>" . $salad['ingredients'] . "</td>";
+                        echo "<td>" . $salad['nutritional_content'] . "</td>";
+                        echo "<td><img src='uploads/" . $salad['salad_img'] . "' width='250' height='250'></td>";
+                        echo "<td><a href='AdminPanel/edit.php?id=" . $salad['id'] . "' class='btn btn-info my-2'>Edit</a> <a href='AdminPanel/delete.php?id=" . $salad['id'] . "' class='btn btn-danger'>Delete</a></td>";
                         echo "</tr>";
                     }
                     ?>
