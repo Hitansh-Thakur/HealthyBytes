@@ -1,4 +1,4 @@
-<footer class="footer mt-8">
+<footer class="footer mt-8" style="width:100vw">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center text-white">
                         <p class="copyright">
                             Copyright ©
                             <script>document.write(new Date().getFullYear());</script> All rights reserved

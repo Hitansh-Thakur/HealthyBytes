@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('saladbg.jpeg');
+    background-image: url('./images/signup2.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 15;
@@ -9,6 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    overflow: hidden;
   }
   
   .container {
@@ -25,16 +26,17 @@ body {
     font-size: 1000;
     font-weight: bolder ;
     text-align: left;
-    color: #ffffff;
+    color: #014604;
   }
   
   form {
     position:absolute;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #f3ffef89;
     padding: 1.5rem;
-    
+    border-radius: 1rem;
+    align-items: center;
   }
   
   label {
@@ -51,6 +53,7 @@ body {
     margin-right: 10px;
     border: 1px solid #116b20;
     border-radius: 4px;
+    width: 20rem;
   }
   
   input[type=submit] {

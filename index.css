@@ -13,7 +13,8 @@
 }
 
 body {
-    background: var(--primary-light)!important;
+    /* background: var(--primary-light)!important; */
+    background:url(./images/bg-pattern.png) ;
     margin-top: 6rem!important;
     font-family: 'Source Sans Pro', sans-serif !important;
     /* height: 100%; */
@@ -24,6 +25,24 @@ body {
 
     height: 4rem;
 
+}
+/* how to  */
+.navbar .cart 
+,.navbar .user{
+    margin-top: 1rem;
+    font-size: 1.5em;
+    
+}
+
+.cart span{
+    position: relative;
+    top: -1em;
+    left: -1em;
+    background: #212529;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.6em;
 }
 
 
