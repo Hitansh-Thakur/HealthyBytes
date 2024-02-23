@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    include 'db.php';
+                    include 'db_connect.php';
                     $result = $conn->query("SELECT * FROM salads");
                     while ($salad = $result->fetch_assoc()) {
                         echo "<tr>";

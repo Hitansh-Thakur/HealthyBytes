@@ -17,13 +17,15 @@
 
 <body>
     <!-- navBar -->
-    <?php include 'nav.php'; ?>
+    <?php 
+    session_start();
+    include 'nav.php'; ?>
     <div class="container ">
 
         <h1 class="pt-4 pb-2">Salads</h1>
         <?php
         // Database connection
-        include 'db.php';
+        include 'db_connect.php';
 
         // SQL query
         $sql = "SELECT * FROM salads";

@@ -24,7 +24,7 @@
     <tbody>
 
         <?php
-        include '../db.php';
+        include '../db_connect.php';
         $result = $conn->query("SELECT * FROM users");
         while ($user = $result->fetch_assoc()) {
             echo '<tr>';

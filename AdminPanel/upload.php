@@ -1,6 +1,6 @@
 <?php
 // Include the database configuration file
-include_once '../db.php';
+include_once '../db_connect.php';
 
 
 $targetDir = "../uploads/";
