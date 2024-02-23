@@ -1,29 +1,40 @@
 <?php
 session_start();
 
+require 'db_connect.php'; // Include your database connection file
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require 'db.php'; // Include your database connection file
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    echo 'pass:'. $password."\n";
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+
+    $sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
 
-
-    // check if password matches the password in database
-    $result = $conn->query("SELECT * FROM users WHERE username = '$username'");
-    $row = $result->fetch_assoc();
-    echo $row['password']."<br>";
-    echo $hashed_password;
-    if (password_verify($hashed_password, $row['password'])) {
-        $_SESSION['username'] = $username;
-        header('Location: index.php');
+    if ($user && password_verify($password, $user['password'])) {
+        // Successful login
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        // echo "session user id: " . $_SESSION['user_id'] . "<br>";
+        //redirect to home page
+        header("Location: index.php");
     } else {
-
-        echo "Invalid username or password";
+        // Invalid credentials
+        // header("Location: login.php");
+        // automatically redirect to login page after 3 seconds
+        header("Location:login.php");
+        echo '
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Invalid Credentials</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        ';
     }
-
-
 }
 ?>
