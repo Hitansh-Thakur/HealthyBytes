@@ -2,90 +2,38 @@
 session_start();
 
 include_once 'db_connect.php';
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
 
-// // Define variables and initialize with empty values
-// $usernameErr = $emailErr = $passwordErr = "";
-// $username = $email = $password = "";
+$errors = array();
 
-// // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     // Validate username
-//     if (empty($_POST["username"])) {
-//         $usernameErr = "Username is required";
-//     } else {
-//         $username = test_input($_POST["username"]);
-//         // check if username already exists
-//         $result = $conn->query("SELECT * FROM users WHERE username = '$username'");
-//         if ($result->num_rows > 0) {
-//             $usernameErr = "Username already exists";
-//         }
 
-    //         // Check if username only contains letters and numbers
-//         if (!preg_match("/^[a-zA-Z0-9]*$/",$username)) {
-//             $usernameErr = "Only letters and numbers allowed";
-//         }
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
+    // Validate password
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format";
+    }
 
-    //     }
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    //     // Validate email
-//     if (empty($_POST["email"])) {
-//         $emailErr = "Email is required";
-//     } else {
-//         $email = test_input($_POST["email"]);
-//         // Check if e-mail address is well-formed
-//         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//             $emailErr = "Invalid email format";
-//         }
-//     }
-
-    //     // Validate password
-//     // if (empty($_POST["password"])) {
-//     //     $passwordErr = "Password is required";
-//     // } else {
-//     //     $password = test_input($_POST["password"]);
-//     //     // Check if password is strong
-//     //     if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/",$password)) {
-//     //         $passwordErr = "Password must be minimum eight characters, at least one letter and one number";
-//     //     }
-//     // }
-
-    // Check input errors before inserting in database
-    // if (empty($usernameErr) && empty($passwordErr) && empty($emailErr)) {
-        // Hash the password (for security)
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $email = $_POST['email'];
-
-        
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Save the data to your database or perform further actions
-        // Example: Insert into a users table
+    // Save the data to your database or perform further actions
+    // Example: Insert into a users table
+    if (empty($errors)) {
         $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$hashed_password', '$email')";
         $conn->query($sql);
 
-
         $sql = "SELECT * FROM users WHERE username = '$username' AND email = '$email' LIMIT 1";
-        $conn->query($sql);
         $result = $conn->query($sql);
         // Start the session and set the session variable
         $_SESSION['user_id'] = $result->fetch_assoc()['id'];
         $_SESSION['username'] = $username;
         header("Location: index.php");
-    // }
+    }
 }
 
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 ?>
 
 <!DOCTYPE html>
@@ -94,8 +42,9 @@ function test_input($data)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./signup.css">
     <style>
         .error {
             color: red;
@@ -104,22 +53,70 @@ function test_input($data)
 </head>
 
 <body>
-    <h2>Sign Up</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-        
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form class="needs-validation" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+            novalidate>
+            <div class="form-grofup">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" name="username" minlength="8" required>
+                <div class="invalid-feedback">
+                    Username should be minimum 8 characters
+                </div>
+            </div>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" minlength="8" required>
+                <?php if (!empty($errors['password']))
+                    echo '<div class="error">' . $errors['password'] . '</div>'; ?>
+                <div class="invalid-feedback">
+                Password should be minimum 8 characters
+                </div>
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-        
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" required>
 
-        <input type="submit" value="Sign Up">
-    </form>
+                <div class="invalid-feedback">
+                    Email is required
+                </div>
+            </div>
+
+            <input type="submit" value="Sign Up"></input>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-/zFjtkM9a6Mvfb0JpuziJj6H+dItVjYK73c52ObJrJig9MBA+0NRbqzFArto2C+C"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script>
+        // Bootstrap validation
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
 
 </html>
