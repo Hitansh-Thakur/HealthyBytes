@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $desc = $_POST['salad_desc'];
     $price = $_POST['salad_price'];
     $ingredients = $_POST['ingredients'];
-    $nutritional_content = $_POST['nutritional_content'];
+    $category = $_POST['category'];
 
     // Update the product
-    $stmt = $conn->prepare("UPDATE salads SET salad_name = ?, salad_desc = ?, salad_price = ?, ingredients = ?, nutritional_content = ? WHERE id = ?");
-    $stmt->bind_param("sssssi", $name, $desc, $price, $ingredients, $nutritional_content, $id);
+    $stmt = $conn->prepare("UPDATE salads SET salad_name = ?, salad_desc = ?, salad_price = ?, ingredients = ?, category = ? WHERE id = ?");
+    $stmt->bind_param("sssssi", $name, $desc, $price, $ingredients, $category, $id);
     $stmt->execute();
 
     // Check if a new image file is uploaded
@@ -82,9 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 value="<?php echo $salad['salad_price']; ?>">
         </div>
         <div class="form-group">
-            <label for="nutritional_content">Nutritional Content:</label>
-            <textarea class="form-control" id="nutritional_content"
-                name="nutritional_content"><?php echo $salad['nutritional_content']; ?></textarea>
+            <label for="category">Nutritional Content:</label>
+            <textarea class="form-control" id="category"
+                name="category"><?php echo $salad['category']; ?></textarea>
         </div>
         <div class="form-group">
             <label for="ingredients">Ingredients:</label>

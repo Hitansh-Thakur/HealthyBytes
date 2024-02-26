@@ -35,8 +35,8 @@
                 <input type="number" class="form-control" id="price" name="price">
             </div>
             <div class="form-group">
-                <label for="nutritional_content">Nutritional Content:</label>
-                <textarea class="form-control" id="nutritional_content" name="nutritional_content"></textarea>
+                <label for="category">Nutritional Content:</label>
+                <textarea class="form-control" id="category" name="category"></textarea>
             </div>
             <div class="form-group">
                 <label for="ingredients">Ingredients:</label>

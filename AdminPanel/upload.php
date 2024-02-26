@@ -18,11 +18,11 @@ if (isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
             $name = $_POST['name'];
             $desc = $_POST['desc'];
             $price = $_POST['price'];
-            $nutritional_content = $_POST['nutritional_content'];
+            $category = $_POST['category'];
             $ingredients = $_POST['ingredients'];
 
             // Insert data into database
-            $insert = $conn->query("INSERT into salads (salad_name, salad_desc, salad_price, nutritional_content, ingredients, salad_img) VALUES ('" . $name . "', '" . $desc . "', '" . $price . "', '" . $nutritional_content . "', '" . $ingredients . "', '" . $fileName . "')");
+            $insert = $conn->query("INSERT into salads (salad_name, salad_desc, salad_price, category, ingredients, salad_img) VALUES ('" . $name . "', '" . $desc . "', '" . $price . "', '" . $category . "', '" . $ingredients . "', '" . $fileName . "')");
             if ($insert) {
                 echo "The salad has been added successfully.";
                 header("Location: insert.php");
