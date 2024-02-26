@@ -13,22 +13,93 @@
     <title>Salads | Healthy Bytes</title>
     <link rel="stylesheet" href="index.css">
 
+    <style>
+        /* Custom styles for scrollspy */
+        .scrollspy {
+            background: rgba(40, 167, 69, 0.2);
+            backdrop-filter: blur(2px);
+            padding: 0.75rem;
+            position: fixed;
+            top: 8rem;
+            bottom: 2rem;
+            left: 5rem;
+            width: calc(20% - 1rem);
+            border-radius: 1rem;
+            z-index: 100;
+
+
+        }
+        footer{
+            z-index: 101;
+        }
+
+        /* where should i apply scroll margin  */
+
+
+
+
+        .scrollspy .nav-link {
+
+            color: #003400;
+            font-size: 1.5em;
+
+
+
+
+        }
+
+        .scrollspy .nav-link.active {
+            color: #fff;
+            /* Active link color */
+            background-color: #28a745;
+            /* Active link background color */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* implement scroll snap */
+        .category {
+            scroll-snap-align: center;
+            /* margin-block: 1rem; */
+            scroll-margin-block: 11rem;
+        }
+
+        .category+.category {
+            margin-top: 2rem;
+        }
+
+
+        /* implement scroll snap aling center */
+        .category-parent {
+            scroll-snap-type: y mandatory;
+        }
+        .main{
+            width: clamp(100%, 100%, 100%);
+        }
+
+        /* the active class should be applied to the nav-links as soon as the category is visibble in the viewport */
+
+
+        /*  */
+    </style>
+
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#navbar-example2" data-offset="300">
     <!-- navBar -->
-    <?php 
+    <?php
     session_start();
     include 'nav.php'; ?>
-    <div class="container ">
+    <div class="container-fluid mx-auto main" >
 
-        <h1 class="pt-4 pb-2">Salads</h1>
         <?php
         // Database connection
         include 'db_connect.php';
 
         // SQL query
-        $sql = "SELECT * FROM salads";
+        $sql = "SELECT * FROM salads ORDER BY category";
 
         // Execute the query
         $result = mysqli_query($conn, $sql);
@@ -43,57 +114,80 @@
         mysqli_close($conn);
         ?>
 
-        <!-- Your existing HTML code -->
+        <!-- Scrollspy navigation -->
+        <!-- TODO: we can also make the titles dynamic -->
+        <div class="row">
+            <div class="col-md-3 scrollspy ">
+                <h4 class="text-center mb-3">Categories</h4>
+                <ul class="nav nav-pills flex-column" id="navbar-example2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#protein-rich">Protein</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fiber-rich">fiber-rich</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#carbs-rich">carbs</a>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="container">
-            <div class="row">
-                <?php
-                foreach ($products as $salad) {
-                    ?>
-                    <div class="col-sm-12 col-md-6 col-lg-4"> <!-- This makes the grid responsive -->
+            <!-- Salad cards grouped by category -->
+            <div class="col-md-9 category-parent w-75 ml-auto">
+                <h1 class="pt-4 pb-2">Salads</h1>
 
-                        <div class="card" style="max-width: 18rem;">
-                            <img class="card-img-top " src="<?php echo "./uploads/" . $salad['salad_img']; ?>"
-                                alt="Card image cap" height="200px" style="object-fit:cover;">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <?php echo $salad['salad_name']; ?>
-                                </h5>
-                                <p class="card-text text-truncate text-dark d-block" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" >
-                                    <?php echo $salad['salad_desc']; ?>
-                                </p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <?php echo $salad['nutritional_content']; ?>
-                                </li>
+                <div id="protein-rich" class="category">
+                    <h2>Protein-Rich</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            foreach ($products as $salad) {
+                                if ($salad['category'] == 'protein-rich') {
+                                    $category = 'protein-rich';
 
-                            </ul>
-                            <div class="card-body">
-                                <span class="text-dark font-weight-bold align-middle" >
-                                    <?php echo $salad['salad_price'] . " ₹ "; ?>
-                                </span>
-                                <!-- <a href="product_details.php?id=1" class="btn btn-primary float-right align-middle"></a> -->
-                            <?php    
-                                echo "<a href='product_details.php?id=" . $salad['id'] . "' class='btn btn-primary float-right align-middle'>View</a>";
+                                    include './components/salad_card.php'; // Include a separate file for card layout
+                                }
+                            }
                             ?>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <?php
-                }
-                ?>
+                <div id="fiber-rich" class="category">
+                    <h2>Fiber Rich</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            foreach ($products as $salad) {
+                                if ($salad['category'] == 'fiber-rich') {
+                                    $category = 'fiber-rich';
+                                    include './components/salad_card.php'; // Include a separate file for card layout
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
 
-
+                <div id="carbs-rich" class="category">
+                    <h2>carbs</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            foreach ($products as $salad) {
+                                if ($salad['category'] == 'carbs') {
+                                    include './components/salad_card.php'; // Include a separate file for card layout
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Footer -->
     <?php include 'footer.php'; ?>
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
