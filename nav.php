@@ -48,10 +48,10 @@
                     Catagories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="./products.php#protein-rich">Protein-Rich</a>
+                    <a class="dropdown-item" href="./products.php#fiber-rich">Fiber-Rich</a>
+                    <a class="dropdown-item" href="./products.php#vegan">Vegan Salad</a>
+                    <a class="dropdown-item" href="#">Mediterranean </a>
                 </div>
             </li>
             <li class="nav-item">

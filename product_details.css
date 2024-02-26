@@ -9,6 +9,7 @@
   /* Product Image */
   .product-image {
     width: 100%;
+    max-width: 50vw;
     max-width: 400px;
     height: 50vh;
     margin-bottom: 20px;
@@ -34,7 +35,7 @@
     font-weight: bold;
     color: #333;
   }
-  p{
+  .main p{
     color: #333 !important;
   }
   
