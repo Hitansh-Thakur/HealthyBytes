@@ -70,7 +70,18 @@ if (isset($_POST['add_to_cart']) and isset($_SESSION['user_id'])) {
     // echo 'Product added to cart.';
 }
 
-
+// Remove item from cart
+if (isset($_POST['remove_from_cart'])) {
+    $item_id = $_POST['item_id'];
+    $stmt = $conn->prepare("DELETE FROM cart_items WHERE id = ?");
+    $stmt->bind_param("i", $item_id);
+    $stmt->execute();
+} elseif (isset($_POST['reduce_quantity'])) {
+    $item_id = $_POST['item_id'];
+    $stmt = $conn->prepare("UPDATE cart_items SET quantity = quantity - 1 WHERE id = ?");
+    $stmt->bind_param("i", $item_id);
+    $stmt->execute();
+}
 
 ?>
 <!DOCTYPE html>
@@ -154,6 +165,11 @@ if (isset($_POST['add_to_cart']) and isset($_SESSION['user_id'])) {
                     <td>" . $price * $quantity . "</td>
                     <td><img src='./uploads/$img' alt='product image' class='img-fluid' style='max-width:10em'></td>
                     </tr>";
+                //     echo "<form method='POST'>
+                //     <input type='hidden' name='item_id' value='". $row['id'].">
+                //     <td><button type='submit' name='remove_from_cart'>Remove</button></td>
+                //     <td><button type='submit' name='reduce_quantity'>Reduce Quantity</button></td>
+                // </form>";
                     }
                     echo "<tr>
                 <td></td>
