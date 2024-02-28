@@ -35,12 +35,15 @@
                 <input type="number" class="form-control" id="price" name="price">
             </div>
             <div class="form-group">
-                <label for="category">Nutritional Content:</label>
+                <label for="category">Category:</label>
                 <textarea class="form-control" id="category" name="category"></textarea>
             </div>
             <div class="form-group">
                 <label for="ingredients">Ingredients:</label>
-                <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+                <select class="form-control" id="ingredients" name="ingredients">
+                    <option value="option1">Option 1</option>
+                    
+                </select>
             </div>
             <div class="form-group">
                 <label for="file">Image:</label>
