@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 
 ?>
 <!doctype html>
@@ -14,13 +14,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Healthy Bytes | Home</title>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+
 </head>
 
 <body>
     <!-- navBar -->
-    <?php 
+    <?php
     include 'nav.php';
-    
+    echo $_SESSION['username'];
+    echo $_SESSION['user_id'];
+
     ?>
 
     <main class="d-flex flex-column ">
@@ -130,9 +136,9 @@
         <!-- small cards with images to show popular products -->
         <div class="container d-block my-4">
             <h2 class="py-2">Popular Products</h2>
-            
+
             <div class="flex-wrap justify-content-around d-flex">
-                
+
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-header">chickpeas Salad</div>
                     <div class="card-body text-center p-0">
@@ -169,13 +175,13 @@
                         <img class="w-50" src="./images/illustrations/1.webp" alt="">
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
 
         <!-- bootstrap 4 footer -->
-        <?php include 'footer.php';?>
+        <?php include 'footer.php'; ?>
 
 
 
@@ -194,6 +200,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <?php include './smoothscroll.php' ?>
+
+
+
 </body>
 
 </html>
