@@ -11,8 +11,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $email = $_POST['email'];
 
+    // validate username by checking if it already exists in the database
+    $sql = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $errors['username'] = "Username already exists";
+    }
+
+    // validate email by checking if it already exists in the database
+    $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $errors['email'] = "Email already exists";
+    }
+
+
+
+
+
+
     // Validate password
-    
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email format";
     }
@@ -25,13 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$hashed_password', '$email')";
         $conn->query($sql);
 
-        $sql = "SELECT * FROM users WHERE username = '$username' AND email = '$email' LIMIT 1";
-        $result = $conn->query($sql);
-        // Start the session and set the session variable
-        $_SESSION['user_id'] = $result->fetch_assoc()['id'];
+        $last_id = $conn->insert_id;
+        $_SESSION['user_id'] = $last_id;
         $_SESSION['username'] = $username;
         header("Location: index.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
+
 }
 
 ?>
@@ -60,6 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-grofup">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" name="username" minlength="8" required>
+                <?php if (!empty($errors['username']))
+                    echo '<div class="error">' . $errors['username'] . '</div>'; ?>
                 <div class="invalid-feedback">
                     Username should be minimum 8 characters
                 </div>
@@ -71,14 +96,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (!empty($errors['password']))
                     echo '<div class="error">' . $errors['password'] . '</div>'; ?>
                 <div class="invalid-feedback">
-                Password should be minimum 8 characters
+                    Password should be minimum 8 characters
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name="email" required>
-
+                <?php if (!empty($errors['password']))
+                    echo '<div class="error">' . $errors['email'] . '</div>'; ?>
                 <div class="invalid-feedback">
                     Email is required
                 </div>
