@@ -1,12 +1,7 @@
 <?php
 session_start();
+
 require_once './db_connect.php';
-require_once './razorpay-php-2.9.0/Razorpay.php'; // Include the Razorpay SDK
-use Razorpay\Api\Api;
-
-$api = new Api('rzp_test_7uVG1qKCzbwtMp', '1zmntNrVqlX9Qr26SfOelbVB');
-
-
 
 // check if the user is logged in
 
@@ -92,11 +87,6 @@ if (isset($_POST['remove_from_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Shopping Cart</title>
-
-    <!-- razor pay -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-
 </head>
 
 <body>
@@ -142,13 +132,14 @@ if (isset($_POST['remove_from_cart'])) {
                 $stmt->bind_param("i", $user_id);
                 $stmt->execute();
                 $result = $stmt->get_result();
+                $total = 0;
+                $total_Quantity = 0;
 
                 if ($result->num_rows == 0) {
                     echo "<tr><td colspan='6'>Your cart is empty.</td></tr>";
                 } else {
-                    $total = 0;
-                    $total_Quantity = 0;
                     $id = 0;
+                    $cartItems = [];
                     while ($row = $result->fetch_assoc()) {
                         $id += 1;
                         $name = $row['salad_name'];
@@ -157,28 +148,39 @@ if (isset($_POST['remove_from_cart'])) {
                         $img = $row['salad_img'];
                         $total += $price * $quantity;
                         $total_Quantity += $quantity;
+                        $cartItems[] = [
+                            'product_id' => $row['id'],
+                            'quantity' => $row['quantity'],
+                            'price' => $row['salad_price'],
+                            'name' => $row['salad_name'],
+                            'img' => $row['salad_img'],
+                            'created_at' => date('Y-m-d H:i:s')
+                        ];
                         echo "<tr>
-                    <td>$id</td>
-                    <td>$name</td>
-                    <td>$price</td>
-                    <td>$quantity</td>
-                    <td>" . $price * $quantity . "</td>
-                    <td><img src='./uploads/$img' alt='product image' class='img-fluid' style='max-width:10em'></td>
-                    </tr>";
-                //     echo "<form method='POST'>
-                //     <input type='hidden' name='item_id' value='". $row['id'].">
-                //     <td><button type='submit' name='remove_from_cart'>Remove</button></td>
-                //     <td><button type='submit' name='reduce_quantity'>Reduce Quantity</button></td>
-                // </form>";
+                            <td>$id</td>
+                            <td>$name</td>
+                            <td>$price</td>
+                            <td>$quantity</td>
+                            <td>" . $price * $quantity . "</td>
+                            <td><img src='./uploads/$img' alt='product image' class='img-fluid' style='max-width:10em'></td>
+                        </tr>";
+                        //     echo "<form method='POST'>
+                        //     <input type='hidden' name='item_id' value='". $row['id'].">
+                        //     <td><button type='submit' name='remove_from_cart'>Remove</button></td>
+                        //     <td><button type='submit' name='reduce_quantity'>Reduce Quantity</button></td>
+                        // </form>";
                     }
+                    $_SESSION['cart_items'] = $cartItems;
+                    $_SESSION['total'] = $total;
+                    $_SESSION['total_Quantity'] = $total_Quantity;
                     echo "<tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th>Total Items: $total_Quantity</th>
-                <th>Total: $total</th>
-                <td></td>
-                </tr>";
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th>Total Items: $total_Quantity</th>
+                            <th>Total: $total</th>
+                            <td></td>
+                        </tr>";
 
 
                 }
@@ -188,71 +190,95 @@ if (isset($_POST['remove_from_cart'])) {
             </tbody>
         </table>
 
-        <!-- -------------RAZOR PAY---------------------- -->
+
         <?php
-        // Create an order in Razorpay
-        $orderData = [
-        'receipt' => $_SESSION['user_id'] . ' - ' . date('Y-m-d H:i:s'),
-        'amount' => $total * 100, // amount in the smallest currency unit
-        'currency' => 'INR',
-        'payment_capture' => 1 // auto capture
-        ];
-        $razorpayOrder = $api->order->create($orderData);
-        $razorpayOrderId = $razorpayOrder['id'];
-        $_SESSION['razorpay_order_id'] = $razorpayOrderId;
+        if ($total == 0) {
+            echo "<a href='./products.php' class='btn btn-primary'>Continue Shopping</a>";
+            // exit();
+        } else {
+            echo '<a href="./checkout.php" class="btn btn-primary mr-3">Checkout</a>';
+            echo "<a href='./products.php' class='btn btn-primary'>Continue Shopping</a>";
 
-        // Display the checkout form
-        echo '<button id="rzp-button1" class="btn btn-primary">Pay with Razorpay</button>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <script>
-            var options = {
-                "key": "rzp_test_7uVG1qKCzbwtMp", // Enter the Key ID generated from the Dashboard
-                "amount": "' . $total * 100 . '", // Amount is in currency subunits. Default currency is INR. Hence, here 50000 refers to 50000 paise
-                "currency": "INR",
-                "name": "Healthy Bytes",
-                "description": "Test Transaction",
-                "image": "./images/logo.png",
-                "order_id": "' . $razorpayOrderId . '", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                "handler": function (response) {
-                    // Submit the form with the payment ID
-                    var form = document.createElement("form");
-                    form.action = "verify_payment.php";
-                    form.method = "POST";
-
-                    var input = document.createElement("input");
-                    input.type = "hidden";
-                    input.name = "razorpay_payment_id";
-                    input.value = response.razorpay_payment_id;
-                    form.appendChild(input);
-
-                    document.body.appendChild(form);
-                    form.submit();
-                },
-                "prefill": {
-                    "name": "Gaurav Kumar",
-                    "email": "gaurav.kumar@example.com",
-                    "contact": "9999999999"
-                },
-                "notes": {
-                    "address": "Razorpay Corporate Office"
-                },
-                "theme": {
-                    "color": "#F37254"
-                }
-            };
-            var rzp1 = new Razorpay(options);
-            document.getElementById("rzp-button1").onclick = function (e) {
-                rzp1.open();
-                e.preventDefault();
-            }
-        </script>';
-        
+        }
         ?>
-
-        <a href="./products.php" class="btn btn-primary">Continue Shopping</a>
-        <!-- <a href="#" class="btn btn-success">Checkout</a> -->
     </div>
-    <?php include 'footer.php'; ?>
+    <?php
+    // var_dump($_SESSION['cart_id']);
+    
+
+
+
+    echo '<div class="container mt-5">';
+    echo '<h2 class="pt-4">Your Orders</h2>';
+    echo '<table class="d-table table table-responsive-sm w-100">';
+    echo '<thead>';
+    echo '<tr>';
+    // echo '<th scope="col">#</th>';
+    echo '<th scope="col">Image</th>';
+    echo '<th scope="col">Salad Name</th>';
+    echo '<th scope="col">Qty</th>';
+    echo '<th scope="col">Price</th>';
+    echo '<th scope="col">Status</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    if (!isset($_SESSION['order_items'])) {
+        echo "<tr><td colspan='5'>You have no orders.</td></tr>";
+        exit();
+    }
+    $orderItems = $_SESSION['order_items'];
+    $ordertotal=0;
+    
+    // $stmt = $conn->prepare("UPDATE orders SET order_status = 'OutForDelivery' WHERE order_status = 'Processing' AND id = ?");
+    // $stmt->bind_param("i", $_SESSION['order_id']);
+    // $stmt->execute();
+    foreach ($orderItems as $item) {
+        $ordertotal += $item['price'] * $item['quantity'];
+        $order_time = strtotime($item['created_at']);
+        $current_time = time();
+        $time_difference = $current_time - $order_time;
+        $status = $time_difference > 20 ? 'Delivered' : 'Out For Delivery';
+        // var_dump($_SESSION);
+        if ($status == 'Delivered') {
+            $stmt = $conn->prepare("UPDATE orders SET order_status = 'Delivered' WHERE order_status = 'OutForDelivery' AND id = ?");
+            $stmt->bind_param("i", $_SESSION['order_id']);
+            
+        }
+        echo "<tr>";
+        echo "<td><img src='uploads/{$item['img']}' alt='{$item['name']}' width='150' height='100' style='object-fit:cover;'></td>";
+        echo "<td>{$item['name']}</td>";
+        echo "<td>{$item['quantity']}</td>";
+        echo "<td>{$item['price']}</td>";
+        echo "<td>{$status}</td>";
+        echo "</tr>";
+
+    }
+  
+
+
+
+
+    // show the total below table using $item['price'] * $item['quantity']
+    echo "<tr>";
+    echo "<td></td>";
+    echo "<td></td>";
+    echo "<td></td>";
+    echo "<th>Total: {$ordertotal}</th>";
+    echo "<td></td>";
+    echo "</tr>";
+
+
+
+
+
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
+
+
+
+
+    include 'footer.php'; ?>
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

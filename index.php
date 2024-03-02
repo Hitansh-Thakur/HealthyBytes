@@ -24,8 +24,7 @@ session_start();
     <!-- navBar -->
     <?php
     include 'nav.php';
-    echo $_SESSION['username'];
-    echo $_SESSION['user_id'];
+
 
     ?>
 

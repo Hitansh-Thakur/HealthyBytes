@@ -12,8 +12,8 @@
 
 body {
     /* background: var(--primary-light)!important; */
-    background:url(./images/bg-pattern.png) ;
-    margin-top: 6rem!important;
+    background: url(./images/bg-pattern.png);
+    margin-top: 6rem !important;
     font-family: 'Source Sans Pro', sans-serif !important;
 
 }
@@ -23,15 +23,16 @@ body {
     height: 4rem;
 
 }
+
 /* how to  */
-.navbar .cart 
-,.navbar .user{
+.navbar .cart,
+.navbar .user {
     margin-top: 1rem;
     font-size: 1.5em;
-    
+
 }
 
-.cart span{
+.cart span {
     position: relative;
     top: -1em;
     left: -1em;
@@ -50,7 +51,8 @@ body {
     max-height: 100%;
     width: 100%;
 }
-.carousel-inner{
+
+.carousel-inner {
     height: 40vh;
 }
 
@@ -171,7 +173,7 @@ body {
 
 /* --------------------------------------UTILITY--------------------------------- */
 
-.primary-btn{
+.primary-btn {
     /* for a salad ordering website */
     background: var(--primary-dark);
     color: #fff;
@@ -183,48 +185,45 @@ body {
 
 }
 
-h2{
+h2 {
     margin-bottom: 2rem;
 }
 
-.catagories h2{
+.catagories h2 {
     margin-block: 2rem;
 }
 
 
 
 .footer {
-    
+
     padding: 2rem;
     text-align: center;
     margin-top: 2rem;
     background: #111;
 }
 
-.footer a,p{
+.footer a,
+.footer p {
     color: var(--primary-light) !important;
 
 }
 
 
 /* Custom ScrollBar */
-body::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	/* border-radius: 10px; */
-	background-color: var(--primary-light);
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    /* border-radius: 10px; */
+    background-color: var(--primary-light);
 }
 
-body::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: var(--primary-light);
+body::-webkit-scrollbar {
+    width: 12px;
+    background-color: var(--primary-light);
 }
 
-body::-webkit-scrollbar-thumb
-{
-	/* border-radius: 10px; */
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: var(--primary-dark);
+body::-webkit-scrollbar-thumb {
+    /* border-radius: 10px; */
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: var(--primary-dark);
 }
-

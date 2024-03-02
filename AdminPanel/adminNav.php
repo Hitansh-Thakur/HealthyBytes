@@ -1,8 +1,8 @@
 <div class="container my-4">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/admin.php') ? 'active' : ''; ?>"
-                href="/HealthyBytes/admin.php">Salads</a>
+            <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == 'HealthyBytes/AdminPanel/admin.php') ? 'active' : ''; ?>"
+                href="/HealthyBytes/AdminPanel/admin.php">Salads</a>
         </li>
         <li class="nav-item">
             <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/AdminPanel/insert.php') ? 'active' : ''; ?>"
@@ -12,7 +12,7 @@
             <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/AdminPanel/users.php') ? 'active' : ''; ?>" href="/HealthyBytes/AdminPanel/users.php">Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/AdminPanel/orders.php') ? 'active' : ''; ?>" href="/HealthyBytes/AdminPanel/orders.php">Orders</a>
         </li>
     </ul>
 </div>

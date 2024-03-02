@@ -9,7 +9,7 @@
                     <a class="nav-item px-2 mb-2 mb-md-0" href="./about.php">About</a>
                     <a class="nav-item px-2 mb-2 mb-md-0" href="./login.php">Log in</a>
                     <a class="nav-item px-2 mb-2 mb-md-0" href="./salads.php">Salads</a>
-                    <a class="nav-item px-2 mb-2 mb-md-0" href="./admin.php">Admin</a>
+                    <a class="nav-item px-2 mb-2 mb-md-0" href="./adminlogin.html">Admin</a>
                 </p>
             </div>
         </div>

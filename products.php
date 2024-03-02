@@ -21,31 +21,70 @@
             padding: 0.75rem;
             position: fixed;
             top: 8rem;
-            bottom: 2rem;
-            left: 5rem;
-            width: calc(20% - 1rem);
+            /* bottom: 2rem; */
+            left: 1rem;
+            /* Changed to 0 for small screens */
+            right: 0;
+            /* Changed to 0 for small screens */
+            width: auto;
+            /* Changed to auto for small screens */
+            /* height: 2rem; */
             border-radius: 1rem;
             z-index: 100;
+            overflow-x: auto;
+            max-width: 20vw;
+            /* Added to enable horizontal scroll on small screens */
+        }
 
+        .scrollspy .nav {
+            flex-direction: column;
 
         }
-        footer{
+
+        .card-content {
+            padding-left: 3.5rem;
+        }
+
+        /* media query for screens smaller than 750 px */
+        @media (max-width: 750px) {
+            .scrollspy {
+                top: 5.5rem;
+                height: auto;
+                left: 0;
+                right: 0;
+                width: auto;
+                padding: 0.5rem;
+                border-radius: 0;
+                max-width: 100vw;
+
+
+                /* display: flex; */
+            }
+
+            .scrollspy .nav {
+                flex-direction: row !important;
+                align-items: center;
+
+            }
+
+            .scrollspy h4 {
+                display: none;
+            }
+
+            .card-content {
+                margin-top: 2rem;
+            }
+        }
+
+        footer {
             z-index: 101;
         }
 
         /* where should i apply scroll margin  */
 
-
-
-
         .scrollspy .nav-link {
-
             color: #003400;
-            font-size: 1.5em;
-
-
-
-
+            font-size: 1.2 em;
         }
 
         .scrollspy .nav-link.active {
@@ -59,6 +98,7 @@
             scroll-behavior: smooth;
         }
 
+
         /* implement scroll snap */
         .category {
             scroll-snap-align: center;
@@ -70,19 +110,18 @@
             margin-top: 2rem;
         }
 
-
         /* implement scroll snap aling center */
         .category-parent {
             scroll-snap-type: y mandatory;
         }
-        .main{
-            width: clamp(100%, 100%, 100%);
+
+        .main-container {
+            width: 95%;
+            margin-inline: auto;
+
         }
 
         /* the active class should be applied to the nav-links as soon as the category is visibble in the viewport */
-
-
-        /*  */
     </style>
 
 </head>
@@ -92,7 +131,7 @@
     <?php
     session_start();
     include 'nav.php'; ?>
-    <div class="container-fluid mx-auto main" >
+    <div class="container-fluid mx-auto main-container">
 
         <?php
         // Database connection
@@ -119,7 +158,7 @@
         <div class="row">
             <div class="col-md-3 scrollspy ">
                 <h4 class="text-center mb-3">Categories</h4>
-                <ul class="nav nav-pills flex-column" id="navbar-example2">
+                <ul class="nav nav-pills flex-colum" id="navbar-example2">
                     <li class="nav-item">
                         <a class="nav-link" href="#protein-rich">Protein</a>
                     </li>
@@ -133,7 +172,7 @@
             </div>
 
             <!-- Salad cards grouped by category -->
-            <div class="col-md-9 category-parent w-75 ml-auto">
+            <div class="col-md-10 category-parent ml-auto card-content">
                 <h1 class="pt-4 pb-2">Salads</h1>
 
                 <div id="protein-rich" class="category">
@@ -141,13 +180,11 @@
                     <div class="container">
                         <div class="row">
                             <?php
-                            foreach ($products as $salad) {
-                                if ($salad['category'] == 'protein-rich') {
-                                    $category = 'protein-rich';
 
-                                    include './components/salad_card.php'; // Include a separate file for card layout
-                                }
-                            }
+                            $category = 'protein-rich';
+
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
                             ?>
                         </div>
                     </div>
@@ -158,12 +195,10 @@
                     <div class="container">
                         <div class="row">
                             <?php
-                            foreach ($products as $salad) {
-                                if ($salad['category'] == 'fiber-rich') {
-                                    $category = 'fiber-rich';
-                                    include './components/salad_card.php'; // Include a separate file for card layout
-                                }
-                            }
+
+                            $category = 'fiber-rich';
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
                             ?>
                         </div>
                     </div>
@@ -174,11 +209,9 @@
                     <div class="container">
                         <div class="row">
                             <?php
-                            foreach ($products as $salad) {
-                                if ($salad['category'] == 'carbs') {
-                                    include './components/salad_card.php'; // Include a separate file for card layout
-                                }
-                            }
+
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
                             ?>
                         </div>
                     </div>
