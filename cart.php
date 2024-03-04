@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once './db_connect.php';
 
 // check if the user is logged in
@@ -203,10 +202,6 @@ if (isset($_POST['remove_from_cart'])) {
         ?>
     </div>
     <?php
-    // var_dump($_SESSION['cart_id']);
-    
-
-
 
     echo '<div class="container mt-5">';
     echo '<h2 class="pt-4">Your Orders</h2>';
@@ -237,11 +232,12 @@ if (isset($_POST['remove_from_cart'])) {
         $order_time = strtotime($item['created_at']);
         $current_time = time();
         $time_difference = $current_time - $order_time;
-        $status = $time_difference > 20 ? 'Delivered' : 'Out For Delivery';
-        // var_dump($_SESSION);
+        $status = $time_difference > 40 ? 'Delivered' : 'Out For Delivery';
+
         if ($status == 'Delivered') {
             $stmt = $conn->prepare("UPDATE orders SET order_status = 'Delivered' WHERE order_status = 'OutForDelivery' AND id = ?");
             $stmt->bind_param("i", $_SESSION['order_id']);
+            $stmt->execute();
             
         }
         echo "<tr>";

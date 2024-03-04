@@ -2,6 +2,7 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="index.css">
+
 <style>
     .dropdown:hover>.dropdown-menu {
         display: block;
@@ -35,11 +36,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/index.php') ? 'active' : ''; ?>">
                 <a class="nav-link" href="./index.php">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./products.php">Salads</a>
+            <li class="nav-item <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/products.php') ? 'active' : ''; ?>">
+                <a class="nav-link " href="./products.php">Salads</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -51,7 +52,8 @@
                     <a class="dropdown-item" href="./products.php#protein-rich">Protein-Rich</a>
                     <a class="dropdown-item" href="./products.php#fiber-rich">Fiber-Rich</a>
                     <a class="dropdown-item" href="./products.php#vegan">Vegan Salad</a>
-                    <a class="dropdown-item" href="#">Mediterranean </a>
+                    <a class="dropdown-item" href="./products.php#mediterranean">Mediterranean </a>
+                    <a class="dropdown-item" href="./products.php#fruit-salad">Fruit Salads</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -62,7 +64,7 @@
         <div class="d-flex align-items-center ">
 
             <!------------------------- CART LOGO -------------------------->
-            <a href="cart.php" class="nav-link text-dark">
+            <a href="cart.php" class="nav-link text-dark d-flex mt-2 flex-column justify-content-center align-items-center">
                 <i class="cart fa-solid fa-cart-shopping">
                     <span>
                         <?php
@@ -85,6 +87,7 @@
                         ?>
                     </span>
                 </i>
+                <span>Cart & Orders</span>
             </a>
             <!------------------------- USER LOGO -------------------------->
             <div class=" dropdown d-flex flex-column justify-content-center align-items-center py-2">

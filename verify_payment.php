@@ -25,6 +25,10 @@ if ($payment['status'] == 'captured') {
     $stmt->bind_param("si", $_POST['address'],$_SESSION['order_id']);
     $stmt->execute();
     
+    // update specil instructions in orders table
+    $stmt = $conn->prepare("UPDATE orders SET special_instructions = ? WHERE id = ? ");
+    $stmt->bind_param("si", $_POST['special_instructions'],$_SESSION['order_id']);  
+    $stmt->execute();
 
     // update the payments table
     $stmt = $conn->prepare("INSERT INTO payments (user_id, order_id, razorpay_payment_id, total_amount, payment_status) VALUES (?, ?, ?, ?, 'success')");

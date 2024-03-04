@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // validate email by checking if it already exists in the database
-    $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -51,8 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $username;
         header("Location: index.php");
 
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
 }

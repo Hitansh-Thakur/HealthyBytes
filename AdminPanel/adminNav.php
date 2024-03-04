@@ -1,7 +1,7 @@
 <div class="container my-4">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == 'HealthyBytes/AdminPanel/admin.php') ? 'active' : ''; ?>"
+            <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/AdminPanel/admin.php') ? 'active' : ''; ?>"
                 href="/HealthyBytes/AdminPanel/admin.php">Salads</a>
         </li>
         <li class="nav-item">

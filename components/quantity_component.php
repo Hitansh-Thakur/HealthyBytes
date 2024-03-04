@@ -1,10 +1,9 @@
-<div class="qty-container d-flex align-items-center">
-    <input class="btn btn-primary mr-3" type="submit" value="Add to Cart">
+
     <button class="qty-btn-minus btn btn-primary rounded-left" type="button"><i class="fa fa-minus"></i></button>
     <input type="text" name="qty" value="1" class="input-qty form-control border-0 rounded-0 text-center"
         style="width:60px" />
     <button class="qty-btn-plus btn btn-primary rounded-right" type="button"><i class="fa fa-plus"></i></button>
-</div>
+
 
 <script>
     var incrementButton = document.querySelector('.qty-btn-plus');

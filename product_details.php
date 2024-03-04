@@ -21,7 +21,9 @@ $result->free();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $name ?>| Healthy Bytes</title>
+  <title>
+    <?php echo $name ?>| Healthy Bytes
+  </title>
   <link rel="stylesheet" href="product_details.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -74,17 +76,16 @@ $result->free();
         </p>
         <form action="cart.php" method="post">
 
-          <div class="form-group">
-            <label for="special_instructions">Special Cooking Instructions:</label>
-            <textarea placeholder="Eg. Add more vegetables
-       Add more nuts
-            " class="form-control" id="special_instructions" name="special_instructions" rows="3" style="resize:none;"></textarea>
+          <!-- Quantity Conponent -->
+          <div class="qty-container d-flex align-items-center">
+            <input class="btn btn-primary mr-3" type="submit" value="Add to Cart">
+            <?php include 'components/quantity_component.php'; ?>
           </div>
 
-          <!-- Quantity Conponent -->
-          <?php include 'components/quantity_component.php'; ?>
-
           <?php
+
+
+
 
           echo '<input type="hidden" name="product_id" value="' . $id . '">';
           echo '<input type="hidden" name="product_name" value="' . $name . '">';

@@ -90,40 +90,33 @@ session_start();
                 <div class="product-container">
                     <div class="product">
                         <div class="product-content">
-                            <h3>Salad 1</h3>
+                            <h3>Protein Rich</h3>
                             <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
-                                amet
-                                consectetur
-                                adipisicing.
+                            Protein-rich foods are essential for muscle repair and growth, providing the body with the necessary building blocks for optimal health and strength.
                             </p>
-                            <button class="primary-btn">Show Product</button>
+                            <a href="./products.php#protein-rich" class="btn primary-btn card-btn">Show Product</a>
                         </div>
                     </div>
 
                     <div class="product">
                         <div class="product-content">
-                            <h3>Salad 2</h3>
+                            <h3>Fiber Rich</h3>
                             <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
-                                amet
-                                consectetur
-                                adipisicing.
+                            Fiber-rich salads are a nutritious addition to any meal, packed with a variety of vegetables, fruits, and whole grains. They promote digestive health.
+
+
                             </p>
-                            <button class="primary-btn">Show Product</button>
+                            <a href="./products.php#fiber-rich" class="btn primary-btn card-btn">Show Product</a>
                         </div>
                     </div>
 
                     <div class="product">
                         <div class="product-content">
-                            <h3>Salad 3</h3>
+                            <h3>Mediterranean</h3>
                             <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit
-                                amet
-                                consectetur
-                                adipisicing.
+                            The Mediterranean diet emphasizes fresh produce, olive oil, fish, and nuts, offering a delicious and nutritious way to support longevity and health.
                             </p>
-                            <button class="primary-btn">Show Product</button>
+                            <a href="./products.php#mediterranean" class="btn primary-btn card-btn">Show Product</a>
                         </div>
                     </div>
                 </div>
@@ -138,42 +131,42 @@ session_start();
 
             <div class="flex-wrap justify-content-around d-flex">
 
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">chickpeas Salad</div>
+                <a href="./product_details.php?id=20" class="link card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Berry Bliss Salad</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/1.webp" alt="">
                     </div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Tuna Salads</div>
+                </a>
+                <a href='product_details.php?id=5' class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Lentil Salad</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/2.webp" alt="">
                     </div>
-                </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Corn Salad</div>
+                </a>
+                <a href='product_details.php?id=10' class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Mediterranean Chopped Salad</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/3.webp" alt="">
                     </div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">chickpeas Salad</div>
+                </a>
+                <a href='product_details.php?id=15' class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Greek Salad</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/2.webp" alt="">
                     </div>
-                </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Tuna Salads</div>
+                </a>
+                <a href='product_details.php?id=25' class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Fall Harvest</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/3.webp" alt="">
                     </div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Corn Salad</div>
+                </a>
+                <a href='product_details.php?id=26' class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Tropical Paradise</div>
                     <div class="card-body text-center p-0">
                         <img class="w-50" src="./images/illustrations/1.webp" alt="">
                     </div>
-                </div>
+                </a>
 
             </div>
         </div>

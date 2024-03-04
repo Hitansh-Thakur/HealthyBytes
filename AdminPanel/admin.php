@@ -48,7 +48,7 @@
                         echo "<td>" . $salad['salad_price'] . "</td>";
                         echo "<td>" . $salad['ingredients'] . "</td>";
                         echo "<td>" . $salad['category'] . "</td>";
-                        echo "<td><img src='../uploads/" . $salad['salad_img'] . "' width='250' height='250'></td>";
+                        echo "<td><img src='../uploads/" . $salad['salad_img'] . "' width='220' height='220' style='object-fit:cover;'></td>";
                         echo "<td><a href='edit.php?id=" . $salad['id'] . "' class='btn btn-info my-2'>Edit</a> <a href='delete.php?id=" . $salad['id'] . "' class='btn btn-danger'>Delete</a></td>";
                         echo "</tr>";
                     }

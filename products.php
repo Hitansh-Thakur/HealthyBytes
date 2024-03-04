@@ -138,10 +138,10 @@
         include 'db_connect.php';
 
         // SQL query
-        $sql = "SELECT * FROM salads ORDER BY category";
+        $sql = "SELECT `id`, `salad_name`, `salad_desc`, `salad_price`, LOWER(`category`), `ingredients`, `salad_img` FROM `salads` ORDER BY category";
 
         // Execute the query
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);    
 
         // Fetch all
         $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -166,7 +166,16 @@
                         <a class="nav-link" href="#fiber-rich">fiber-rich</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#carbs-rich">carbs</a>
+                        <a class="nav-link" href="#low-carbs">Low-carbs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mediterranean">Mediterranean</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vegan">Vegan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fruit-salad">Fruit Salad</a>
                     </li>
                 </ul>
             </div>
@@ -204,11 +213,52 @@
                     </div>
                 </div>
 
-                <div id="carbs-rich" class="category">
-                    <h2>carbs</h2>
+                <div id="low-carbs" class="category">
+                    <h2>Low Carbs</h2>
                     <div class="container">
                         <div class="row">
                             <?php
+                            $category = 'low-carb';
+
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="mediterranean" class="category">
+                    <h2>Mediterranean</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            $category = 'mediterranean';
+
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="vegan" class="category">
+                    <h2>Vegan Salads</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            $category = 'vegan';
+
+                            include './components/salad_card.php'; // Include a separate file for card layout
+                            
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fruit-salad" class="category">
+                    <h2>Fruit Salad</h2>
+                    <div class="container">
+                        <div class="row">
+                            <?php
+                            $category = 'fruit-salad';
 
                             include './components/salad_card.php'; // Include a separate file for card layout
                             

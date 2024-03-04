@@ -130,8 +130,8 @@ body {
 }
 
 .product .product-content h3 {
-    padding-bottom: 0.25em;
-    margin-bottom: 0.75em;
+    padding-bottom: 1em;
+    margin-bottom: 1.2em;
     position: relative;
     width: max-content;
     font-size: 1.25rem;
@@ -182,6 +182,11 @@ body {
     border: none;
     cursor: pointer;
     transition: background 250ms ease-in-out;
+
+}
+.card-btn:hover{
+    background: var(--primary-light);
+    color: var(--primary-dark) !important;
 
 }
 

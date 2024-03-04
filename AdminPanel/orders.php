@@ -60,9 +60,9 @@
             foreach ($orders as $order) {
               if ($order['order_status'] == 'Delivered') {
                 // details of the order
-                $result = $conn->query("SELECT * FROM salads WHERE id = " . $order['salad_id'] . "AND ");
+                $result = $conn->query("SELECT * FROM salads WHERE id = " . $order['salad_id']);
                 $salad = $result->fetch_assoc();
-                echo "<li class='list-group-item'>" . $order['user_id'] . " - " . $salad['salad_name'] . " - " . $salad['salad_price'] . " <button class='btn btn-danger btn-sm ml-2 removeCompletedBtn' data-id='" . $order['id'] . "'>Remove</button></li>";
+                echo "<li class='list-group-item'>" . $order['user_id'] . " - " . $salad['salad_name'] . " - " . $salad['salad_price'] . " - " . $order['address'] . " <button class='btn btn-danger btn-sm ml-2 removeCompletedBtn' data-id='" . $order['id'] . "' onclick='updateOrderStatus(" . $order['id'] . ")'>Remove</button></li>";
               }
             }
             ?>
@@ -115,7 +115,7 @@
 
         completedOrders.forEach(function (order) {
           completedOrdersList.append('<li class="list-group-item">' + order.customer + ' - ' + order.product + ' <button class="btn btn-danger btn-sm ml-2 removeCompletedBtn" data-id="' + order.id + '">Remove</button></li>');
-        });
+        })
       }
 
       $(document).on('click', '.completeBtn', function () {

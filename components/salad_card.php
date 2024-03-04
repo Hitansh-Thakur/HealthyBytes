@@ -1,14 +1,14 @@
 <?php foreach ($products as $salad): ?>
-    <?php if ($salad['category'] == $category): ?>
+    <?php if ($salad['LOWER(`category`)'] == $category): ?>
         <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
             <div class="card" style="max-width: 18rem;">
-                <img class="card-img-top" src="./uploads/<?php echo $salad['salad_img']; ?>" alt="Card image cap" height="200px" style="object-fit:cover;">
+                <img class="card-img-top" src="./uploads/<?php echo $salad['salad_img']; ?>" alt="<?php echo $salad['salad_name']; ?>" height="200px" style="object-fit:cover;">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $salad['salad_name']; ?></h5>
                     <p class="card-text text-truncate text-dark d-block" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"><?php echo $salad['salad_desc']; ?></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><?php echo $salad['category']; ?></li>
+                    <li class="list-group-item"><?php echo $salad['LOWER(`category`)']; ?></li>
                 </ul>
                 <div class="card-body">
                     <span class="text-dark font-weight-bold align-middle"><?php echo $salad['salad_price']; ?> ₹ </span>
