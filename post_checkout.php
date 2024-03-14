@@ -9,6 +9,7 @@ if (!isset($_SESSION['order_id']) || !isset($_SESSION['total'])) {
     exit();
 }
 
+
 // Include the database connection file
 require_once 'db_connect.php';
 

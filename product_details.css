@@ -55,3 +55,11 @@
   .product-button:hover {
     background-color: #0056b3;
   }
+
+  @media screen and (max-width: 575px){
+    
+    .product-image {
+      max-width: 100%;
+      height: 40vh !important;
+    }
+  }

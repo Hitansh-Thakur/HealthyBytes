@@ -10,7 +10,13 @@
 </head>
 <body class="container ">
     
-<?php include 'adminNav.php';?>
+<?php 
+session_start();
+include 'adminNav.php';
+ if (!isset($_SESSION['admin_id'])) {
+    header("Location:../adminlogin.html");
+}
+?>
 
 <h2>Users</h2>
 <table class="container table ">

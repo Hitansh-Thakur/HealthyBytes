@@ -13,7 +13,12 @@
 
 <body>
     <?php
+    session_start();
         include 'adminNav.php';
+        // check if admin is logged in
+        if (!isset($_SESSION['admin_id'])) {
+            header("Location:../adminlogin.html");
+        }
     ?>
 
 

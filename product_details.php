@@ -38,7 +38,7 @@ $result->free();
   <div class="main container-fluid pt-4" style="width:95vw">
     <div class="row">
       <div class="col-md-6">
-        <img src="<?php echo "./uploads/" . $img ?>" class="img-fluid product-image" alt="Product Image"
+        <img  src="<?php echo "./uploads/" . $img ?>" class="img-fluid product-image" alt="Product Image"
           style="height:75vh;object-fit:cover">
       </div>
       <div class="col-md-6 text-dark text-justify">

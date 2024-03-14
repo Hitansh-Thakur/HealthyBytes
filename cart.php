@@ -2,6 +2,7 @@
 session_start();
 require_once './db_connect.php';
 
+
 // check if the user is logged in
 
 // Check if the add to cart form is submitted

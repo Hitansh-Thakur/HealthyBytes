@@ -49,6 +49,7 @@ body {
     border-radius: 1rem;
     object-fit: cover;
     max-height: 100%;
+    object-position: center;
     width: 100%;
 }
 

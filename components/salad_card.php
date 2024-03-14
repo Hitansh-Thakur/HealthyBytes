@@ -1,6 +1,6 @@
 <?php foreach ($products as $salad): ?>
     <?php if ($salad['LOWER(`category`)'] == $category): ?>
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
             <div class="card" style="max-width: 18rem;">
                 <img class="card-img-top" src="./uploads/<?php echo $salad['salad_img']; ?>" alt="<?php echo $salad['salad_name']; ?>" height="200px" style="object-fit:cover;">
                 <div class="card-body">

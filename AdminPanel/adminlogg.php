@@ -1,6 +1,7 @@
 <?php
 // Database configuration
 include_once '../db_connect.php';
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the values submitted by the form

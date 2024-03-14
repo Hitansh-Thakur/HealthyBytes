@@ -14,7 +14,11 @@
 <body>
 
 <?php
+session_start();
         include 'adminNav.php';
+        if (!isset($_SESSION['admin_id'])) {
+            header("Location:../adminlogin.html");
+        }
     ?>
 
 

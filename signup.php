@@ -5,6 +5,8 @@ include_once 'db_connect.php';
 
 $errors = array();
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST['username'];

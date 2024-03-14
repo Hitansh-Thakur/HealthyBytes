@@ -12,6 +12,9 @@
 <body>
   <?php
   session_start();
+  if (!isset($_SESSION['admin_id'])) {
+    header("Location:../adminlogin.html");
+  }
 
   include_once '../db_connect.php';
   include_once './adminNav.php';

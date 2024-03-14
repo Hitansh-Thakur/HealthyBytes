@@ -108,6 +108,8 @@
 
         .category+.category {
             margin-top: 2rem;
+            scroll-margin-block: 8rem;
+
         }
 
         /* implement scroll snap aling center */

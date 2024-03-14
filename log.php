@@ -21,18 +21,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $user['username'];
         // echo "session user id: " . $_SESSION['user_id'] . "<br>";
         //redirect to home page
-        header("Location: index.php");
+        echo '
+        <div class="success alert-success alert-dismissible fade show" role="alert">
+        <strong>Invalid Credentials</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        ';
+        header("Refresh: 2; url=index.php");
     } else {
         // Invalid credentials
         // header("Location: login.php");
         // automatically redirect to login page after 3 seconds
-        header("Location:login.php");
+        header('Refresh: 2; url=login.php');
         echo '
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Invalid Credentials</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <strong>Invalid Credentials</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
         </div>
         ';
     }

@@ -14,5 +14,8 @@
         <li class="nav-item">
             <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/HealthyBytes/AdminPanel/orders.php') ? 'active' : ''; ?>" href="/HealthyBytes/AdminPanel/orders.php">Orders</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+        </li>
     </ul>
 </div>
