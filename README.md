@@ -18,19 +18,65 @@ This online salad ordering website revolutionizes the culinary experience by not
 
 ### Features:
 <!-- list of features -->
+1. User can login and signup
 1. User can view all salads
 2. User can view salads by protein content
 3. User can view salads by nutrition content
 4. User can view salad details
 5. User can add salads to cart
-6. User can view cart
+6. User can view cart(individual cart will be maintained for each user)
 7. User can remove salads from cart
 8. User can place order
 9. User can view order history
 
 ### Screenshots:
 <!-- screenshots of the project -->
-![Screenshot 1](./images/temp/Screenshot-home.png)
+Signup
+![signup](./images/ss/signup.png)
 
+Login
+![login](./images/ss/login.jpg)
+
+Home Page
+![Home-Page](./images/temp/Screenshot-home.png)
+
+Salads
+![salads](./images/temp/Screenshot%20(258).png)
+
+
+Salad Description
+![salad-desc](./images/ss/salad-desc.jpg)
+
+Cart
+![cart](./images/ss/cart.png)
+
+Checkout
+![checkout](./images/ss/checkout.png)
+
+payment Gateway (Razorpay)
+![payment](./images/ss/pay1.png) ![payment](./images/ss/pay2.jpg)
+
+
+Order Confirmation
+![order-confirm](./images/ss/orderconfirm.png)
+
+Order Page
+![order-page](./images/ss/orderpage.png)
+
+#### Admin Panel
+Admin can view all salads
+![salads](./images/temp/Screenshot%20(268).png)
+
+Admin can add salads
+![add-salad](./images/temp/Screenshot%202024-03-15%20203007.png)
+
+Admin can edit salads
+![Edit salad](./images/temp/Screenshot%202024-03-15%20203042.png)
+
+Admin can manage orders
+![manage-orders](./images/ss/orders-admin.png)
+
+Admin can view users
+![list-users](./images/ss/users.png)
 
 

@@ -233,7 +233,7 @@ if (isset($_POST['remove_from_cart'])) {
         $order_time = strtotime($item['created_at']);
         $current_time = time();
         $time_difference = $current_time - $order_time;
-        $status = $time_difference > 40 ? 'Delivered' : 'Out For Delivery';
+        $status = $time_difference > 120 ? 'Delivered' : 'Out For Delivery';
 
         if ($status == 'Delivered') {
             $stmt = $conn->prepare("UPDATE orders SET order_status = 'Delivered' WHERE order_status = 'OutForDelivery' AND id = ?");

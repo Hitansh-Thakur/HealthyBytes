@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
     }
     // Redirect to the admin page
-    header('Location: ../admin.php');
+    header('Location: ./admin.php');
     exit;
 }
 

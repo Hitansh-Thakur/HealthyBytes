@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Orders Page with Bootstrap</title>
+  <title>Orders Page</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="orders.css" rel="stylesheet">
 </head>
@@ -19,12 +19,14 @@
   include_once '../db_connect.php';
   include_once './adminNav.php';
   // select all orders from the database for all users 
-  $result = $conn->query("SELECT orders.id,orders.user_id, orders.total_amount, orders.address, orders.order_status, order_items.salad_id, order_items.quantity, order_items.price FROM orders JOIN order_items ON orders.id = order_items.order_id; ");
+  $result = $conn->query("SELECT orders.id,orders.user_id,orders.special_instructions, orders.total_amount, orders.address, orders.order_status,orders.created_at, order_items.salad_id, order_items.quantity, order_items.price FROM orders JOIN order_items ON orders.id = order_items.order_id; ");
   $orders = [];
   while ($order = $result->fetch_assoc()) {
 
     $orders[] = $order;
   }
+
+  // after 5 minutes the o
   ?>
 
   <div class="container">
@@ -40,10 +42,15 @@
             <?php
             foreach ($orders as $order) {
               if ($order['order_status'] == 'OutForDelivery') {
-                # code...
                 $result = $conn->query("SELECT * FROM salads WHERE id = " . $order['salad_id']);
                 $salad = $result->fetch_assoc();
-                echo "<li class='list-group-item'>" . $order['user_id'] . " - " . $salad['salad_name'] . " - " . $salad['salad_price'] . " <button class='btn btn-success btn-sm ml-2 completeBtn' data-id='" . $order['id'] . "'>Complete</button> <button class='btn btn-danger btn-sm ml-2 removePendingBtn' data-id='" . $order['id'] . "'>Remove</button></li>";
+                echo "<li class='list-group-item'>";
+                echo $order['user_id'] . " - ";
+                echo $salad['salad_name'] . " <br> ";
+                echo 'Price:'.$salad['salad_price'] . "<br> ";
+                echo 'Address:'.$order['address']."<br>";
+                echo 'Cooking Instructions:'.$order['special_instructions'];
+                echo "</li>";
 
               }
             }
@@ -65,13 +72,34 @@
                 // details of the order
                 $result = $conn->query("SELECT * FROM salads WHERE id = " . $order['salad_id']);
                 $salad = $result->fetch_assoc();
-                echo "<li class='list-group-item'>" . $order['user_id'] . " - " . $salad['salad_name'] . " - " . $salad['salad_price'] . " - " . $order['address'] . " <button class='btn btn-danger btn-sm ml-2 removeCompletedBtn' data-id='" . $order['id'] . "' onclick='updateOrderStatus(" . $order['id'] . ")'>Remove</button></li>";
+                echo "<li class='list-group-item'>";
+                echo $order['user_id'] . " - ";
+                echo $salad['salad_name'] . " <br> ";
+                echo 'Price:'.$salad['salad_price'] . "<br> ";
+                echo 'Address:'.$order['address']."<br>";
+                echo 'Cooking Instructions:'.$order['special_instructions'];
+                echo "</li>";
               }
             }
             ?>
           </ul>
         </div>
       </div>
+
+      <?php
+      // delete the order from the database after 5 minutes if dilevered
+        foreach ($orders as $order) {
+          if ($order['order_status'] == 'Delivered') {
+            $time = strtotime($order['created_at']);
+            $time = $time + 300;
+            $current_time = time();
+            if ($current_time > $time) {
+              $conn->query("DELETE FROM orders WHERE id = " . $order['id']);
+              $conn->query("DELETE FROM order_items WHERE order_id = " . $order['id']);
+            }
+          }
+        }
+      ?>
 
 
       <!-- <div class="card mt-4">

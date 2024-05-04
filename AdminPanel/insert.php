@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Insert Salad</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -13,12 +13,12 @@
 
 <body>
 
-<?php
-session_start();
-        include 'adminNav.php';
-        if (!isset($_SESSION['admin_id'])) {
-            header("Location:../adminlogin.html");
-        }
+    <?php
+    session_start();
+    include 'adminNav.php';
+    if (!isset($_SESSION['admin_id'])) {
+        header("Location:../adminlogin.html");
+    }
     ?>
 
 
@@ -40,14 +40,21 @@ session_start();
             </div>
             <div class="form-group">
                 <label for="category">Category:</label>
-                <textarea class="form-control" id="category" name="category"></textarea>
+                <select class="form-control" id="category" name="category">
+                    <option value="">Select a category</option>
+                    <option value="fiber-rich">fiber-rich</option>
+                    <option value="protein-rich">protein-rich</option>
+                    <option value="low-carb">low-carb</option>
+                    <option value="mediterranean">mediterranean</option>
+                    <option value="vegan">vegan</option>
+                    <option value="fruit-salad">fruit-salad</option>
+                    <!-- Add more options as needed -->
+                </select>
             </div>
             <div class="form-group">
                 <label for="ingredients">Ingredients:</label>
-                <select class="form-control" id="ingredients" name="ingredients">
-                    <option value="option1">Option 1</option>
-                    
-                </select>
+                <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+
             </div>
             <div class="form-group">
                 <label for="file">Image:</label>
